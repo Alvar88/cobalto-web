@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cobalto · Proyectos rentables, cobros a tiempo</title>
+<meta name="description" content="Cobalto (empresa ficticia) ayuda a agencias, consultoras y estudios a planear proyectos rentables y cobrar a tiempo.">
+<style>
+  :root { --ink:#13202b; --muted:#5b6670; --brand:#1f4fd1; --brand-dark:#163a9c; --bg:#f6f8fb; --line:#dde3ea; --ok:#167a4a; --err:#b42318; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; color:var(--ink); background:#fff; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:18px 6vw; border-bottom:1px solid var(--line); }
+  .logo { font-weight:800; font-size:22px; letter-spacing:-0.5px; display:flex; align-items:center; gap:10px; }
+  .logo span.dot { width:22px; height:22px; border-radius:6px; background:linear-gradient(135deg,#2f6bff,#173f9e); display:inline-block; }
+  header nav a { color:var(--muted); text-decoration:none; margin-left:22px; font-size:15px; }
+  .hero { display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; padding:56px 6vw 64px; background:var(--bg); align-items:start; }
+  h1 { font-size:44px; line-height:1.08; margin:0 0 18px; letter-spacing:-1px; }
+  .lead { font-size:19px; color:var(--muted); line-height:1.5; margin:0 0 28px; }
+  .products { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .card h3 { margin:0 0 6px; font-size:17px; }
+  .card p { margin:0; color:var(--muted); font-size:14.5px; line-height:1.45; }
+  .proof { color:var(--muted); font-size:14px; }
+  .proof b { color:var(--ink); }
+  form { background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px; box-shadow:0 10px 30px rgba(19,32,43,.07); }
+  form h2 { margin:0 0 4px; font-size:22px; }
+  form .sub { margin:0 0 18px; color:var(--muted); font-size:14.5px; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  label { display:block; font-size:13.5px; font-weight:600; margin:12px 0 5px; }
+  label .opt { font-weight:400; color:var(--muted); }
+  input, select { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:10px; font-size:15px; background:#fff; color:var(--ink); }
+  input:focus, select:focus { outline:2px solid #b9cbff; border-color:var(--brand); }
+  button { width:100%; margin-top:20px; padding:13px; border:0; border-radius:10px; background:var(--brand); color:#fff; font-size:16px; font-weight:700; cursor:pointer; }
+  button:hover { background:var(--brand-dark); }
+  button:disabled { opacity:.6; cursor:wait; }
+  .legal { font-size:12px; color:var(--muted); margin-top:12px; line-height:1.4; }
+  .msg { margin-top:14px; padding:12px 14px; border-radius:10px; font-size:14.5px; display:none; }
+  .msg.ok { display:block; background:#e8f6ee; color:var(--ok); }
+  .msg.err { display:block; background:#fdecea; color:var(--err); }
+  .sim { display:none; margin-bottom:12px; padding:8px 12px; border-radius:8px; background:#fff4e5; color:#8a4b00; font-size:13px; }
+  footer { padding:26px 6vw; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
+  @media (max-width: 900px) { .hero { grid-template-columns:1fr; } h1 { font-size:34px; } .products, .row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="dot"></span>Cobalto</div>
+  <nav><a href="#productos">Productos</a><a href="#demo">Pide una demo</a></nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Proyectos rentables.<br>Cobros a tiempo.</h1>
+    <p class="lead">Software de gestión para agencias, consultoras y estudios en México, Colombia y Chile. Sabe cuánto ganas en cada proyecto antes de que termine, y factura sin perseguir pagos.</p>
+    <div class="products" id="productos">
+      <div class="card"><h3>Planificación y rentabilidad</h3><p>Planea horas y equipo por proyecto, y ve en tiempo real si el margen se está comiendo.</p></div>
+      <div class="card"><h3>Facturación y cobro</h3><p>Factura por avance o por hito, y da seguimiento automático a cada cobro pendiente.</p></div>
+    </div>
+    <p class="proof">Pensado para equipos de <b>5 a 300 personas</b> que viven de vender su tiempo.</p>
+  </div>
+
+  <form id="demo" novalidate>
+    <h2>Pide una demo</h2>
+    <p class="sub">Un especialista de tu país te contacta.</p>
+    <div class="sim" id="sim"></div>
+    <div class="row">
+      <div><label for="firstname">Nombre</label><input id="firstname" required autocomplete="given-name"></div>
+      <div><label for="lastname">Apellido</label><input id="lastname" required autocomplete="family-name"></div>
+    </div>
+    <label for="email">Email de trabajo</label>
+    <input id="email" type="email" required autocomplete="email" placeholder="tu@empresa.com">
+    <label for="phone">Teléfono <span class="opt">(opcional)</span></label>
+    <input id="phone" type="tel" autocomplete="tel" placeholder="+52 55 1234 5678">
+    <div class="row">
+      <div><label for="pais">País</label>
+        <select id="pais" required>
+          <option value="">Selecciona</option>
+          <option value="MX">México</option><option value="CO">Colombia</option><option value="CL">Chile</option>
+          <option value="AR">Argentina</option><option value="PE">Perú</option><option value="OT">Otro país</option>
+        </select></div>
+      <div><label for="producto">¿Qué te interesa?</label>
+        <select id="producto" required>
+          <option value="">Selecciona</option>
+          <option value="planificacion">Planificación y rentabilidad</option>
+          <option value="facturacion">Facturación y cobro</option>
+        </select></div>
+    </div>
+    <label for="empresa">Empresa</label>
+    <input id="empresa" required autocomplete="organization">
+    <div class="row">
+      <div><label for="tipo">Tipo de empresa</label>
+        <select id="tipo" required>
+          <option value="">Selecciona</option>
+          <option value="MARKETING_AND_ADVERTISING">Agencia</option>
+          <option value="MANAGEMENT_CONSULTING">Consultora</option>
+          <option value="DESIGN">Estudio de diseño o arquitectura</option>
+          <option value="">Otro</option>
+        </select></div>
+      <div><label for="tamano">Tamaño del equipo</label>
+        <select id="tamano" required>
+          <option value="">Selecciona</option>
+          <option value="6">1 a 10</option><option value="25">11 a 50</option>
+          <option value="120">51 a 200</option><option value="350">Más de 200</option>
+        </select></div>
+    </div>
+    <button type="submit" id="enviar">Quiero mi demo</button>
+    <div class="msg" id="msg"></div>
+    <p class="legal">Cobalto es una empresa ficticia creada para un caso técnico. Los datos se registran en una cuenta de prueba de HubSpot.</p>
+  </form>
+</section>
+
+<footer>© Cobalto (ficticio) · Caso técnico Head Rev Ops &amp; IA Systems</footer>
+
+<script>
+  // Cuenta y formulario de HubSpot (datos públicos de la API de formularios)
+  const PORTAL_ID = "52317574";
+  const FORM_GUID = "ab51683b-d26e-4734-89d3-0c5a4ef787db";
+  const URL_HS = `https://api.hsforms.com/submissions/v3/integration/submit/${PORTAL_ID}/${FORM_GUID}`;
+
+  // Modo de simulación de la AI para la demo: ?modo=error_429, error_500, timeout o baja_confianza
+  const MODOS = ["normal", "baja_confianza", "error_429", "error_500", "timeout"];
+  const modoParam = new URLSearchParams(location.search).get("modo");
+  const modo = MODOS.includes(modoParam) ? modoParam : "normal";
+  if (modo !== "normal") {
+    const s = document.getElementById("sim");
+    s.style.display = "block";
+    s.textContent = `Modo de simulación activo: ${modo}`;
+  }
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("demo"), msg = $("msg"), btn = $("enviar");
+
+  function mostrar(tipo, texto) { msg.className = "msg " + tipo; msg.textContent = texto; }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const req = ["firstname", "lastname", "email", "pais", "producto", "empresa", "tamano"];
+    const falta = req.find((id) => !$(id).value.trim());
+    if (falta) { mostrar("err", "Completa los campos obligatorios."); $(falta).focus(); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("email").value.trim())) { mostrar("err", "Revisa el email."); $("email").focus(); return; }
+
+    // ID único por envío: es lo que dispara el workflow de ingesta (W1)
+    const idSolicitud = "WEB-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+
+    const contacto = (name, value) => ({ objectTypeId: "0-1", name, value });
+    const empresa = (name, value) => ({ objectTypeId: "0-2", name, value });
+    const fields = [
+      contacto("firstname", $("firstname").value.trim()),
+      contacto("lastname", $("lastname").value.trim()),
+      contacto("email", $("email").value.trim().toLowerCase()),
+      contacto("hs_country_region_code", $("pais").value),
+      contacto("solicitud_producto", $("producto").value),
+      contacto("company", $("empresa").value.trim()),
+      contacto("fuente_solicitud", "demo"),
+      contacto("modo_simulacion_ai", modo),
+      contacto("id_solicitud", idSolicitud),
+      empresa("name", $("empresa").value.trim()),
+      empresa("numberofemployees", $("tamano").value),
+    ];
+    if ($("phone").value.trim()) fields.push(contacto("phone", $("phone").value.trim()));
+    if ($("tipo").value) fields.push(empresa("industry", $("tipo").value));
+
+    btn.disabled = true; btn.textContent = "Enviando...";
+    try {
+      const r = await fetch(URL_HS, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields, context: { pageUri: location.href, pageName: document.title } }),
+      });
+      if (!r.ok) {
+        const t = await r.text();
+        console.error("HubSpot respondió", r.status, t);
+        throw new Error(r.status);
+      }
+      form.querySelectorAll("input, select").forEach((el) => (el.disabled = true));
+      btn.style.display = "none";
+      mostrar("ok", `¡Listo! Recibimos tu solicitud (${idSolicitud}). Un especialista de tu país te contactará pronto.`);
+    } catch (err) {
+      btn.disabled = false; btn.textContent = "Quiero mi demo";
+      mostrar("err", "No pudimos enviar tu solicitud. Intenta de nuevo en un momento.");
+    }
+  });
+</script>
+</body>
+</html>
